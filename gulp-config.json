@@ -1,0 +1,11 @@
+{
+  "sitePrefix" : "nuggs4space_",
+  "iconFontName" : "nuggs4space_icons",
+  "paths" : {
+    "distribution"      : "./web/assets/",
+    "themeRoot"         : "./web/assets/",
+    "source"            : "./build/theme-assets/",
+    "iconFontTemplate"  : "./build/theme-assets/fonts/iconFontTemplate.tmpl",
+    "sassConfigFile"    : "./build/theme-assets/site-variables.json"
+  }
+}

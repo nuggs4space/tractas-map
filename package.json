@@ -1,0 +1,51 @@
+{
+  "name": "builder",
+  "version": "1.0.0",
+  "description": "it builds stuff",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.16.0",
+    "babel-preset-es2015": "^6.16.0",
+    "babelify": "^7.3.0",
+    "backbone": "^1.3.3",
+    "browser-sync": "^2.13.0",
+    "browserify": "^13.3.0",
+    "browserify-shim": "^3.8.12",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-consolidate": "^0.2.0",
+    "gulp-data": "^1.2.1",
+    "gulp-flatten": "^0.3.1",
+    "gulp-iconfont": "^8.0.1",
+    "gulp-imagemin": "^3.0.2",
+    "gulp-inject-string": "^1.1.0",
+    "gulp-json-sass": "0.0.2",
+    "gulp-notify": "^2.2.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-sass-glob": "^1.0.6",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-svgmin": "^1.2.2",
+    "gulp-twig": "^0.7.0",
+    "gulp-uglify": "^2.0.0",
+    "gulp-uglifycss": "^1.0.6",
+    "gulp-util": "^3.0.7",
+    "lodash": "^4.15.0",
+    "player": "^0.6.1",
+    "run-sequence": "^1.2.2",
+    "underscore": "^1.8.3",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "dependencies": {
+    "del": "^2.2.2",
+    "gulp-run": "^1.7.1",
+    "jquery": "^3.1.1"
+  }
+}

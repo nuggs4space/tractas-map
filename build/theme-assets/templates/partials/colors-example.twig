@@ -1,0 +1,11 @@
+{% for colorKey, colorSet in colors %}
+    <div>
+    <h5>{{ colorKey }}</h5>
+    {% for color in colorSet %}
+        <div>
+            <div style="background-color: {{ color }};"></div>
+            <div>colors-{{ colorKey }}-{{ loop.index0 }}</div>
+        </div>
+    {% endfor %}
+    </div>
+{% endfor %}
