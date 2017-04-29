@@ -11,9 +11,9 @@
 	  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 	  <![endif]-->
 	  <script src='https://api.mapbox.com/mapbox-gl-js/v0.36.0/mapbox-gl.js'></script>
-	  <script src='/assets/js/src/app.js'></script>
+	  <script src='assets/js/src/app.js'></script>
 	  <link href='https://api.mapbox.com/mapbox-gl-js/v0.36.0/mapbox-gl.css' rel='stylesheet' />
-	  <link href="/assets/css/src/app.css" rel='stylesheet'>
+	  <link href="assets/css/src/app.css" rel='stylesheet'>
 	</head>
 	<body>
 		<div class="site js-site">
