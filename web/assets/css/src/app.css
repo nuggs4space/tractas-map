@@ -33,3 +33,19 @@ table {
 .map-container {
   width: 100vw;
   height: 100vh; }
+
+.sidebar {
+  background-color: #FFF;
+  box-shadow: 4px 0px 7px 0px #DDD;
+  font-family: 'Source Sans Pro', sans-serif;
+  height: 100vh;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 27rem; }
+  .sidebar .datasets .dataset .heading h4 {
+    font-size: 15px; }
+    .sidebar .datasets .dataset .heading h4 a {
+      text-decoration: none; }
+      .sidebar .datasets .dataset .heading h4 a:active, .sidebar .datasets .dataset .heading h4 a:link, .sidebar .datasets .dataset .heading h4 a:visited {
+        color: #404040; }
