@@ -5,9 +5,10 @@ var $ = require('jquery');
 
 $(document).ready(function () {
 	require('./modules/mapbox');
+	require('./modules/sidebar');
 });
 
-},{"./modules/mapbox":2,"jquery":3}],2:[function(require,module,exports){
+},{"./modules/mapbox":2,"./modules/sidebar":3,"jquery":4}],2:[function(require,module,exports){
 'use strict';
 
 var mapboxMap = function () {
@@ -39,6 +40,15 @@ var mapboxMap = function () {
 new mapboxMap.load();
 
 },{}],3:[function(require,module,exports){
+'use strict';
+
+var $ = require('jquery');
+
+$('.dataset a').click(function () {
+  $(this).parent('.dataset').toggleClass('chosen');
+});
+
+},{"jquery":4}],4:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v3.2.1
  * https://jquery.com/
