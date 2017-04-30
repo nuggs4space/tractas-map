@@ -5,9 +5,9 @@ let $ = require('jquery');
 window.EventAggregator.on('mapLoaded', function(map) {
 	$('.datasets a').click(function(){
 		if($(this).parents('.dataset').hasClass('chosen')){
-			map.setLayoutProperty($(this).data('style'), 'visibility', 'none');
+			map.setLayoutProperty($(this).data('set'), 'visibility', 'none');
 		}else{
-			map.setLayoutProperty($(this).data('style'), 'visibility', 'visible');
+			map.setLayoutProperty($(this).data('set'), 'visibility', 'visible');
 		}
 	});
 });
