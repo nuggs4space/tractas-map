@@ -89,8 +89,23 @@
 							color: #404040
 	.instructions
 		background-color: #f5f5f5
-		box-shadow: inset 0px 3px 7px 0px #DFDFDF;
+		&:first-of-type
+			box-shadow: inset 0px 3px 7px 0px #DFDFDF
 		p
 			color: #404040
 			font-size: 1.4rem
 			padding: 1.4rem
+	.key-wrapper
+		color: #444
+		margin: 2.5rem auto;
+		text-align: center;
+		width: 80%
+		.key
+			text-align: left
+			ul
+				li
+					font-size: 15px
+					font-weight: 300
+					margin-bottom: 1.9rem
+					&:first-line
+						font-weight: 400

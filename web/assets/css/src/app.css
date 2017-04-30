@@ -104,9 +104,23 @@ table {
         .sidebar .datasets .dataset .heading h4 a:active, .sidebar .datasets .dataset .heading h4 a:link, .sidebar .datasets .dataset .heading h4 a:visited {
           color: #404040; }
   .sidebar .instructions {
-    background-color: #f5f5f5;
-    box-shadow: inset 0px 3px 7px 0px #DFDFDF; }
+    background-color: #f5f5f5; }
+    .sidebar .instructions:first-of-type {
+      box-shadow: inset 0px 3px 7px 0px #DFDFDF; }
     .sidebar .instructions p {
       color: #404040;
       font-size: 1.4rem;
       padding: 1.4rem; }
+  .sidebar .key-wrapper {
+    color: #444;
+    margin: 2.5rem auto;
+    text-align: center;
+    width: 80%; }
+    .sidebar .key-wrapper .key {
+      text-align: left; }
+      .sidebar .key-wrapper .key ul li {
+        font-size: 15px;
+        font-weight: 300;
+        margin-bottom: 1.9rem; }
+        .sidebar .key-wrapper .key ul li:first-line {
+          font-weight: 400; }

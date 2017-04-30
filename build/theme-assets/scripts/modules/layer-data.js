@@ -38,7 +38,9 @@ var layerData = [
 		"id": "ecoregions-hover",
 		"type": "fill",
 		"source": "ecoregions",
-		"layout": {},
+		'layout': {
+			'visibility': 'none'
+		},
 		"paint": {
 			"fill-color": "#000",
 			"fill-opacity": .15
@@ -68,7 +70,9 @@ var layerData = [
 		'id': 'parks-hover',
 		'type': 'fill',
 		'source': 'parks',
-		'layout': {},
+		'layout': {
+			'visibility': 'none'
+		},
 		"paint": {
 			'fill-color': '#000',
 			"fill-opacity": .15
@@ -84,6 +88,9 @@ var layerData = [
 			'type': 'geojson',
 			'data': 'assets/geodata/reno-wards.geojson'
 		},
+		'layout': {
+			'visibility': 'none'
+		},
 		"paint": {
 			"fill-color": "rgba(252, 146, 114, .35)",
 			"fill-outline-color": "#000"
@@ -98,6 +105,9 @@ var layerData = [
 		"paint": {
 			"fill-color": "rgba(0, 0, 0, .15)",
 		},
+		'layout': {
+			'visibility': 'none'
+		},
 		"filter": ["==", "ward", ""],
 	},
 
@@ -108,6 +118,9 @@ var layerData = [
 		'source': {
 			'type': 'geojson',
 			'data': 'assets/geodata/watershed.geojson'
+		},
+		'layout': {
+			'visibility': 'none'
 		},
 		"paint": {
 			"fill-color": "rgba(8, 64, 129, .35)",
