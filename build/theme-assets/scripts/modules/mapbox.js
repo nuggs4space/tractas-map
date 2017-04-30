@@ -16,6 +16,8 @@ var mapboxMap = (function() {
 				center: [-119.889663696289, 38.9693489074707], // starting position
 				zoom: 4 // starting zoom
 			});
+
+      map.on('load', function(){
         map.addLayer({
           'id': 'ecoregions',
           'type': 'fill',
