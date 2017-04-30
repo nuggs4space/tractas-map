@@ -3,7 +3,13 @@ let $ = require('jquery');
 
 // Wait for the mappy map to load
 window.EventAggregator.on('mapLoaded', function(map) {
-  map.setStyle('mapbox://styles/teamtractas/cj23w5dgs00362rpen7z9zuti');
+	$('.datasets a').click(function(){
+		if($(this).parents('.dataset').hasClass('chosen')){
+			map.setLayoutProperty($(this).data('style'), 'visibility', 'none');
+		}else{
+			map.setLayoutProperty($(this).data('style'), 'visibility', 'visible');
+		}
+	});
 });
 
 $('.dataset .heading').click(function(){
