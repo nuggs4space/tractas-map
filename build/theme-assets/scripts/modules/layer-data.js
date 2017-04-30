@@ -183,8 +183,18 @@ var layerData = [
 			'visibility': 'none'
 		},
 		"paint": {
-			"fill-color": "rgba(252, 146, 114, .35)",
-			"fill-outline-color": "#000"
+			'fill-color': {
+				'property': 'ward_num',
+				'type': 'categorical',
+				'stops': [
+					['1', '#84EB93'],
+					['2', '#78D585'],
+					['3', '#6CC078'],
+					['4', '#5FAA6A'],
+					['5', '#53945C']
+				]
+			},
+			'fill-opacity': .35
 		},
 	},
 
@@ -194,7 +204,18 @@ var layerData = [
 		'type': 'fill',
 		'source': 'reno-wards',
 		"paint": {
-			"fill-color": "rgba(0, 0, 0, .15)",
+			'fill-color': {
+				'property': 'ward_num',
+				'type': 'categorical',
+				'stops': [
+					['1', '#84EB93'],
+					['2', '#78D585'],
+					['3', '#6CC078'],
+					['4', '#5FAA6A'],
+					['5', '#53945C']
+				]
+			},
+			'fill-opacity': .50
 		},
 		'layout': {
 			'visibility': 'none'
