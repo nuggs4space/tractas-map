@@ -1,6 +1,6 @@
 var sourceData 	= require('./geojson-sources');
 var layerData 	= require('./layer-data');
-
+var $ 					= require('jquery');
 var mapboxMap = (function() {
 
 	var map = null;
@@ -75,19 +75,25 @@ var mapboxMap = (function() {
 					map.setFilter("watershed-hover", ["==", "DS573_WBDH", '']);
 				});
 
-
-
 				// CLick events
 				map.on("click", "parks", function(e) {
-					console.log(e)
+					$('.js-key').find("[data-active-key='parks']").remove();
+					$('.js-key').append('<li data-active-key="parks">Park:<br>' + e.features[0].properties['NAME'] + '</li>');
 				});
 
 				map.on("click", "ecoregions", function(e) {
-					console.log(e)
+					$('.js-key').find("[data-active-key='ecoregion']").remove();
+					$('.js-key').append('<li data-active-key="ecoregion">Ecoregion:<br>' + e.features[0].properties['US_L4NAME'] + '</li>');
 				});
 
 				map.on("click", "reno-wards", function(e) {
-					console.log(e)
+					$('.js-key').find("[data-active-key='wards']").remove();
+					$('.js-key').append('<li data-active-key="wards">Ward:<br>' + e.features[0].properties['ward'] + '</li>');
+				});
+
+				map.on("click", "watershed", function(e) {
+					$('.js-key').find("[data-active-key='water']").remove();
+					$('.js-key').append('<li data-active-key="water">Watershed:<br>' + e.features[0].properties['NAME'] + '</li>');
 				});
 
       });
