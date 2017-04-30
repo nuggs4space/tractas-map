@@ -88,7 +88,7 @@ table {
         column-gap: 2rem;
         font-size: 14px; }
         .sidebar .datasets .dataset .content ul li {
-          padding: 0.7rem 0; }
+          padding: 1rem 0; }
           .sidebar .datasets .dataset .content ul li.chosen a {
             font-weight: 600; }
           .sidebar .datasets .dataset .content ul li a {
