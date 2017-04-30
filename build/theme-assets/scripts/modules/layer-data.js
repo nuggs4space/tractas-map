@@ -151,8 +151,8 @@ var layerData = [
 			'visibility': 'none'
 		},
 		"paint": {
-			'fill-color': '#74CE81',
-			"fill-opacity": .35
+			'fill-color': 'rgba(116, 206, 129, .35)',
+			"fill-outline-color": "#84EB93"
 		},
 	},
 
@@ -166,7 +166,7 @@ var layerData = [
 		},
 		"paint": {
 			'fill-color': '#000',
-			"fill-opacity": .15
+			"fill-opacity": .15,
 		},
 		"filter": ["==", "NAME", ""]
 	},
