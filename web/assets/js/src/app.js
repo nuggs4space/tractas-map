@@ -28,8 +28,8 @@ var mapboxMap = function () {
       map = new mapboxgl.Map({
         container: 'map', // container id
         style: 'mapbox://styles/mapbox/light-v9', //stylesheet location
-        center: [-119.889663696289, 38.9693489074707], // starting position
-        zoom: 4 // starting zoom
+        center: [-120.1317196, 39.557593], // starting position
+        zoom: 9 // starting zoom
       });
 
       map.on('load', function () {
@@ -52,27 +52,36 @@ var mapboxMap = function () {
             'fill-opacity': .35
           }
         });
+
         map.addSource('parks', {
           type: 'geojson',
           data: 'http://data-washoe.opendata.arcgis.com/datasets/e3e91a767f43427495bbf1c79906403f_6.geojson?where=&geometry={"xmin":-14656705.296645248,"ymin":4568085.6007849015,"xmax":-11914756.218000134,"ymax":5301881.072322398,"spatialReference":{"wkid":102100}}'
         });
+
         map.addLayer({
-          'id': 'parks',
-          'type': 'fill',
-          'source': 'parks',
-          'layout': {
-            'visibility': 'none'
+          "id": "ecoregions-hover",
+          "type": "fill",
+          "source": "ecoregions",
+          "layout": {},
+          "paint": {
+            "fill-color": "#000",
+            "fill-opacity": .15
           },
-          'paint': {
-            'fill-color': '#74CE81',
-            'fill-opacity': .35
-          }
+          "filter": ["==", "US_L4NAME", ""]
         });
       });
 
       // Expose the map object once it's ready
       map.on('load', function () {
         window.EventAggregator.emit('mapLoaded', map);
+
+        map.on("mousemove", "ecoregions", function (e) {
+          map.setFilter("ecoregions-hover", ["==", "US_L4NAME", e.features[0].properties['US_L4NAME']]);
+        });
+
+        map.on("mouseleave", "ecoregions", function (e) {
+          map.setFilter("ecoregions-hover", ["==", "US_L4NAME", '']);
+        });
       });
     }
   }
