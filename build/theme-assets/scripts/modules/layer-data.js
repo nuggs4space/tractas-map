@@ -28,6 +28,23 @@ var layerData = [
 		}
 	},
 
+	// California Big Horns
+	{
+		'id': 'ca-bighorns',
+		'type': 'fill',
+		'source': {
+			'type': 'geojson',
+			'data': 'assets/geodata/ca-bighorns.geojson'
+		},
+		'layout': {
+			'visibility': 'none'
+		},
+		"paint": {
+			"fill-color": "rgba(35, 132, 67, .35)",
+			"fill-outline-color": "#000"
+		},
+	},
+
 	// Ecoregions
 	{
 		'id': 'ecoregions',
@@ -103,6 +120,23 @@ var layerData = [
 			'text-field': 'M',
 			'visibility': 'none'
 		}
+	},
+
+	// Mule Deer Layer
+	{
+		'id': 'mule-deer',
+		'type': 'fill',
+		'source': {
+			'type': 'geojson',
+			'data': 'assets/geodata/mule-deer.geojson'
+		},
+		'layout': {
+			'visibility': 'none'
+		},
+		"paint": {
+			"fill-color": "rgba(174, 1, 126, .35)",
+			"fill-outline-color": "#000"
+		},
 	},
 
 	// Parks data
