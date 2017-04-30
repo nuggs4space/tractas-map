@@ -30,9 +30,9 @@ var mapboxMap = (function() {
           },
           'paint': {
             'fill-color': {
-              property: 'US_L4CODE',
-              type: 'categorical',
-              stops: [
+              'property': 'US_L4CODE',
+              'type': 'categorical',
+              'stops': [
                 ['13aa', '#3366CC'],
                 ['13h', '#DC3912'],
                 ['13j', '#FF9900'],
@@ -51,9 +51,26 @@ var mapboxMap = (function() {
           },
         });
 
+        /*
+        map.addLayer({
+          'id': 'elevation',
+          'source': {
+            'type': 'raster',
+            'data': 'assets/geodata/elevation.tif'
+          },
+          'layout': {
+            'visibility': 'none'
+          },
+          'paint': {
+            'fill-color': '#ff0000',
+            'fill-opacity': .35
+          }
+        });
+        */
+
         map.addSource('parks', {
-          type: 'geojson',
-          data: 'http://data-washoe.opendata.arcgis.com/datasets/e3e91a767f43427495bbf1c79906403f_6.geojson?where=&geometry={"xmin":-14656705.296645248,"ymin":4568085.6007849015,"xmax":-11914756.218000134,"ymax":5301881.072322398,"spatialReference":{"wkid":102100}}'
+          'type': 'geojson',
+          'data': 'http://data-washoe.opendata.arcgis.com/datasets/e3e91a767f43427495bbf1c79906403f_6.geojson?where=&geometry={"xmin":-14656705.296645248,"ymin":4568085.6007849015,"xmax":-11914756.218000134,"ymax":5301881.072322398,"spatialReference":{"wkid":102100}}'
         });
 
 				map.addLayer({

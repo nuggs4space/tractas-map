@@ -45,17 +45,34 @@ var mapboxMap = function () {
           },
           'paint': {
             'fill-color': {
-              property: 'US_L4CODE',
-              type: 'categorical',
-              stops: [['13aa', '#3366CC'], ['13h', '#DC3912'], ['13j', '#FF9900'], ['13k', '#109618'], ['13l', '#990099'], ['13x', '#0099C6'], ['5b', '#DD4477'], ['5c', '#66AA00'], ['5f', '#B82E2E'], ['80d', '#22AA99'], ['80g', '#AAAA11'], ['80j', '#329262']]
+              'property': 'US_L4CODE',
+              'type': 'categorical',
+              'stops': [['13aa', '#3366CC'], ['13h', '#DC3912'], ['13j', '#FF9900'], ['13k', '#109618'], ['13l', '#990099'], ['13x', '#0099C6'], ['5b', '#DD4477'], ['5c', '#66AA00'], ['5f', '#B82E2E'], ['80d', '#22AA99'], ['80g', '#AAAA11'], ['80j', '#329262']]
             },
             'fill-opacity': .35
           }
         });
 
+        /*
+        map.addLayer({
+          'id': 'elevation',
+          'source': {
+            'type': 'raster',
+            'data': 'assets/geodata/elevation.tif'
+          },
+          'layout': {
+            'visibility': 'none'
+          },
+          'paint': {
+            'fill-color': '#ff0000',
+            'fill-opacity': .35
+          }
+        });
+        */
+
         map.addSource('parks', {
-          type: 'geojson',
-          data: 'http://data-washoe.opendata.arcgis.com/datasets/e3e91a767f43427495bbf1c79906403f_6.geojson?where=&geometry={"xmin":-14656705.296645248,"ymin":4568085.6007849015,"xmax":-11914756.218000134,"ymax":5301881.072322398,"spatialReference":{"wkid":102100}}'
+          'type': 'geojson',
+          'data': 'http://data-washoe.opendata.arcgis.com/datasets/e3e91a767f43427495bbf1c79906403f_6.geojson?where=&geometry={"xmin":-14656705.296645248,"ymin":4568085.6007849015,"xmax":-11914756.218000134,"ymax":5301881.072322398,"spatialReference":{"wkid":102100}}'
         });
 
         map.addLayer({
@@ -101,10 +118,25 @@ var $ = require('jquery');
 // Wait for the mappy map to load
 window.EventAggregator.on('mapLoaded', function (map) {
 	$('.datasets a').click(function () {
-		if ($(this).parents('.dataset').hasClass('chosen')) {
-			map.setLayoutProperty($(this).data('set'), 'visibility', 'none');
+
+		// get the parent element
+		var p = $(this).parent('li');
+		if (!p.length) {
+			p = $(this).parents('.dataset');
+		}
+
+		// get the datasets from the data-set attribute
+		var datasets = $(this).data('set').split(',');
+
+		// determine whether we are hiding or showing the data layer
+		if (p.hasClass('chosen')) {
+			$.each(datasets, function (index, dataset) {
+				map.setLayoutProperty(dataset, 'visibility', 'none');
+			});
 		} else {
-			map.setLayoutProperty($(this).data('set'), 'visibility', 'visible');
+			$.each(datasets, function (index, dataset) {
+				map.setLayoutProperty(dataset, 'visibility', 'visible');
+			});
 		}
 	});
 });
