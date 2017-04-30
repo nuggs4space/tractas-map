@@ -9,7 +9,6 @@ window.EventAggregator.on('mapLoaded', function(map) {
 		if(!p.length){
 			p = $(this).parents('.dataset');
 		}
-
 		// get the datasets from the data-set attribute
 		var datasets = $(this).data('set').split(',');
 

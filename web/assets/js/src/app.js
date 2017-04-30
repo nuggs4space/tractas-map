@@ -337,6 +337,13 @@ var mapboxMap = function () {
 					map.setFilter("watershed-hover", ["==", "DS573_WBDH", '']);
 				});
 
+				map.on('click', function (e) {
+					$('.js-key').find("[data-active-key='parks']").remove();
+					$('.js-key').find("[data-active-key='ecoregion']").remove();
+					$('.js-key').find("[data-active-key='wards']").remove();
+					$('.js-key').find("[data-active-key='water']").remove();
+				});
+
 				// CLick events
 				map.on("click", "parks", function (e) {
 					$('.js-key').find("[data-active-key='parks']").remove();
@@ -350,7 +357,7 @@ var mapboxMap = function () {
 
 				map.on("click", "reno-wards", function (e) {
 					$('.js-key').find("[data-active-key='wards']").remove();
-					$('.js-key').append('<li data-active-key="wards">Ward:<br>' + e.features[0].properties['ward'] + '</li>');
+					$('.js-key').append('<li data-active-key="wards">Ward:<br>' + e.features[0].properties['ward'] + ' - ' + e.features[0].properties['rep'] + '</li>');
 				});
 
 				map.on("click", "watershed", function (e) {
@@ -381,7 +388,6 @@ window.EventAggregator.on('mapLoaded', function (map) {
 		if (!p.length) {
 			p = $(this).parents('.dataset');
 		}
-
 		// get the datasets from the data-set attribute
 		var datasets = $(this).data('set').split(',');
 
