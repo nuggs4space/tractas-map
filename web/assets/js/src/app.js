@@ -94,7 +94,7 @@ var layerData = [
 		'data': 'assets/geodata/reno-wards.geojson'
 	},
 	"paint": {
-		"fill-color": "rgba(255, 255, 0, .35)",
+		"fill-color": "rgba(252, 146, 114, .35)",
 		"fill-outline-color": "#000"
 	}
 },
@@ -108,6 +108,31 @@ var layerData = [
 		"fill-color": "rgba(0, 0, 0, .15)"
 	},
 	"filter": ["==", "ward", ""]
+},
+
+// Watershed layer
+{
+	'id': 'watershed',
+	'type': 'fill',
+	'source': {
+		'type': 'geojson',
+		'data': 'assets/geodata/watershed.geojson'
+	},
+	"paint": {
+		"fill-color": "rgba(8, 64, 129, .35)",
+		"fill-outline-color": "#000"
+	}
+},
+
+// Watershed layer Hover
+{
+	'id': 'watershed-hover',
+	'type': 'fill',
+	'source': 'watershed',
+	"paint": {
+		"fill-color": "rgba(0, 0, 0, .15)"
+	},
+	"filter": ["==", "DS573_WBDH", ""]
 }];
 
 module.exports = layerData;
@@ -181,6 +206,14 @@ var mapboxMap = function () {
 
 				map.on("mouseleave", "reno-wards", function (e) {
 					map.setFilter("reno-wards-hover", ["==", "ward", '']);
+				});
+
+				map.on("mousemove", "watershed", function (e) {
+					map.setFilter("watershed-hover", ["==", "DS573_WBDH", e.features[0].properties['DS573_WBDH']]);
+				});
+
+				map.on("mouseleave", "watershed", function (e) {
+					map.setFilter("watershed-hover", ["==", "DS573_WBDH", '']);
 				});
 
 				// CLick events

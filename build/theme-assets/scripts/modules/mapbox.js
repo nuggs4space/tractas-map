@@ -67,6 +67,16 @@ var mapboxMap = (function() {
 					map.setFilter("reno-wards-hover", ["==", "ward", '']);
 				});
 
+				map.on("mousemove", "watershed", function(e) {
+					map.setFilter("watershed-hover", ["==", "DS573_WBDH", e.features[0].properties['DS573_WBDH']]);
+				});
+
+				map.on("mouseleave", "watershed", function(e) {
+					map.setFilter("watershed-hover", ["==", "DS573_WBDH", '']);
+				});
+
+
+
 				// CLick events
 				map.on("click", "parks", function(e) {
 					console.log(e)

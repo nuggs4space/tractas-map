@@ -85,7 +85,7 @@ var layerData = [
 			'data': 'assets/geodata/reno-wards.geojson'
 		},
 		"paint": {
-			"fill-color": "rgba(255, 255, 0, .35)",
+			"fill-color": "rgba(252, 146, 114, .35)",
 			"fill-outline-color": "#000"
 		},
 	},
@@ -99,6 +99,31 @@ var layerData = [
 			"fill-color": "rgba(0, 0, 0, .15)",
 		},
 		"filter": ["==", "ward", ""],
+	},
+
+	// Watershed layer
+	{
+		'id': 'watershed',
+		'type': 'fill',
+		'source': {
+			'type': 'geojson',
+			'data': 'assets/geodata/watershed.geojson'
+		},
+		"paint": {
+			"fill-color": "rgba(8, 64, 129, .35)",
+			"fill-outline-color": "#000"
+		},
+	},
+
+	// Watershed layer Hover
+	{
+		'id': 'watershed-hover',
+		'type': 'fill',
+		'source': 'watershed',
+		"paint": {
+			"fill-color": "rgba(0, 0, 0, .15)",
+		},
+		"filter": ["==", "DS573_WBDH", ""],
 	},
 
 	// Image data
@@ -117,6 +142,7 @@ var layerData = [
 	// 	},
 	// 	"paint": {"raster-opacity": 0.85}
 	// },
+
 ];
 
 module.exports = layerData;
