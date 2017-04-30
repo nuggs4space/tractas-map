@@ -4,10 +4,25 @@ let $ = require('jquery');
 // Wait for the mappy map to load
 window.EventAggregator.on('mapLoaded', function(map) {
 	$('.datasets a').click(function(){
-		if($(this).parents('.dataset').hasClass('chosen')){
-			map.setLayoutProperty($(this).data('set'), 'visibility', 'none');
+		
+		// get the parent element
+		var p = $(this).parent('li');
+		if(!p.length){
+			p = $(this).parents('.dataset');
+		}
+
+		// get the datasets from the data-set attribute
+		var datasets = $(this).data('set').split(',');
+
+		// determine whether we are hiding or showing the data layer
+		if(p.hasClass('chosen')){
+			$.each(datasets, function(index, dataset){
+				map.setLayoutProperty(dataset, 'visibility', 'none');
+			});
 		}else{
-			map.setLayoutProperty($(this).data('set'), 'visibility', 'visible');
+			$.each(datasets, function(index, dataset){
+				map.setLayoutProperty(dataset, 'visibility', 'visible');
+			});
 		}
 	});
 });
