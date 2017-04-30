@@ -68,11 +68,6 @@ var mapboxMap = (function() {
         });
         */
 
-        map.addSource('parks', {
-          'type': 'geojson',
-          'data': 'http://data-washoe.opendata.arcgis.com/datasets/e3e91a767f43427495bbf1c79906403f_6.geojson?where=&geometry={"xmin":-14656705.296645248,"ymin":4568085.6007849015,"xmax":-11914756.218000134,"ymax":5301881.072322398,"spatialReference":{"wkid":102100}}'
-        });
-
 				map.addLayer({
 					"id": "ecoregions-hover",
 					"type": "fill",
@@ -83,6 +78,22 @@ var mapboxMap = (function() {
 						"fill-opacity": .15
 					},
 					"filter": ["==", "US_L4NAME", ""]
+				});
+
+				map.addLayer({
+          'id': 'parks',
+          'type': 'fill',
+          'source': {
+            'type': 'geojson',
+            'data': 'assets/geodata/parks.geojson'
+          },
+          'layout': {
+            'visibility': 'none'
+          },
+					"paint": {
+						'fill-color': '#74CE81',
+						"fill-opacity": .35
+					},
 				});
 
       });
