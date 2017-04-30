@@ -142,6 +142,9 @@ var layerData = [
 	'id': 'watershed-hover',
 	'type': 'fill',
 	'source': 'watershed',
+	'layout': {
+		'visibility': 'none'
+	},
 	"paint": {
 		"fill-color": "rgba(0, 0, 0, .15)"
 	},
