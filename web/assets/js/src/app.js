@@ -44,8 +44,12 @@ new mapboxMap.load();
 
 var $ = require('jquery');
 
-$('.dataset a').click(function () {
+$('.dataset .heading').click(function () {
   $(this).parent('.dataset').toggleClass('chosen');
+});
+
+$('.dataset .content li').click(function () {
+  $(this).toggleClass('chosen');
 });
 
 },{"jquery":4}],4:[function(require,module,exports){
