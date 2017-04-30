@@ -10,118 +10,135 @@ $(document).ready(function () {
 	require('./modules/sidebar');
 });
 
-},{"./modules/mapbox":2,"./modules/sidebar":3,"event-emitter":18,"jquery":19}],2:[function(require,module,exports){
+},{"./modules/mapbox":4,"./modules/sidebar":5,"event-emitter":20,"jquery":21}],2:[function(require,module,exports){
+"use strict";
+
+var sources = [];
+
+module.exports = sources;
+
+},{}],3:[function(require,module,exports){
 'use strict';
+
+var layerData = [
+// Ecoregions
+{
+	'id': 'ecoregions',
+	'type': 'fill',
+	'source': {
+		'type': 'geojson',
+		'data': 'assets/geodata/ecoregions.geojson'
+	},
+	'layout': {
+		'visibility': 'none'
+	},
+	'paint': {
+		'fill-color': {
+			'property': 'US_L4CODE',
+			'type': 'categorical',
+			'stops': [['13aa', '#3366CC'], ['13h', '#DC3912'], ['13j', '#FF9900'], ['13k', '#109618'], ['13l', '#990099'], ['13x', '#0099C6'], ['5b', '#DD4477'], ['5c', '#66AA00'], ['5f', '#B82E2E'], ['80d', '#22AA99'], ['80g', '#AAAA11'], ['80j', '#329262']]
+		},
+		'fill-opacity': .35
+	}
+},
+
+// Ecoregions hover layer
+{
+	"id": "ecoregions-hover",
+	"type": "fill",
+	"source": "ecoregions",
+	"layout": {},
+	"paint": {
+		"fill-color": "#000",
+		"fill-opacity": .15
+	},
+	"filter": ["==", "US_L4NAME", ""]
+},
+
+// Parks data
+{
+	'id': 'parks',
+	'type': 'fill',
+	'source': {
+		'type': 'geojson',
+		'data': 'assets/geodata/parks.geojson'
+	},
+	'layout': {
+		'visibility': 'none'
+	},
+	"paint": {
+		'fill-color': '#74CE81',
+		"fill-opacity": .35
+	}
+}];
+
+module.exports = layerData;
+
+},{}],4:[function(require,module,exports){
+'use strict';
+
+var sourceData = require('./geojson-sources');
+var layerData = require('./layer-data');
 
 var mapboxMap = function () {
 
-  var map = null;
+	var map = null;
 
-  function load() {
+	function load() {
 
-    // Grab the map element
-    var mapElement = document.getElementById('map');
+		// Grab the map element
+		var mapElement = document.getElementById('map');
 
-    // If we have everything available, fire up the map
-    if (mapElement) {
-      mapboxgl.accessToken = 'pk.eyJ1IjoidGVhbXRyYWN0YXMiLCJhIjoiY2oyM28zY3NqMDAxMDMzcGJtOXE3anJ6eiJ9.MG1Nm_rqtGCy0CIvfbYK9A';
-      map = new mapboxgl.Map({
-        container: 'map', // container id
-        style: 'mapbox://styles/mapbox/light-v9', //stylesheet location
-        center: [-120.1317196, 39.557593], // starting position
-        zoom: 9 // starting zoom
-      });
+		// If we have everything available, fire up the map
+		if (mapElement) {
+			mapboxgl.accessToken = 'pk.eyJ1IjoidGVhbXRyYWN0YXMiLCJhIjoiY2oyM28zY3NqMDAxMDMzcGJtOXE3anJ6eiJ9.MG1Nm_rqtGCy0CIvfbYK9A';
+			map = new mapboxgl.Map({
+				container: 'map', // container id
+				style: 'mapbox://styles/mapbox/light-v9', //stylesheet location
+				center: [-120.1317196, 39.557593], // starting position
+				zoom: 9 // starting zoom
+			});
 
-      map.on('load', function () {
-        map.addLayer({
-          'id': 'ecoregions',
-          'type': 'fill',
-          'source': {
-            'type': 'geojson',
-            'data': 'assets/geodata/ecoregions.geojson'
-          },
-          'layout': {
-            'visibility': 'none'
-          },
-          'paint': {
-            'fill-color': {
-              'property': 'US_L4CODE',
-              'type': 'categorical',
-              'stops': [['13aa', '#3366CC'], ['13h', '#DC3912'], ['13j', '#FF9900'], ['13k', '#109618'], ['13l', '#990099'], ['13x', '#0099C6'], ['5b', '#DD4477'], ['5c', '#66AA00'], ['5f', '#B82E2E'], ['80d', '#22AA99'], ['80g', '#AAAA11'], ['80j', '#329262']]
-            },
-            'fill-opacity': .35
-          }
-        });
+			map.on('load', function () {
 
-        /*
-        map.addLayer({
-          'id': 'elevation',
-          'source': {
-            'type': 'raster',
-            'data': 'assets/geodata/elevation.tif'
-          },
-          'layout': {
-            'visibility': 'none'
-          },
-          'paint': {
-            'fill-color': '#ff0000',
-            'fill-opacity': .35
-          }
-        });
-        */
+				// Add source data to the map from config
+				if (sourceData.length) {
+					sourceData.forEach(function (source) {
+						map.addSource(source);
+					});
+				}
 
-        map.addLayer({
-          "id": "ecoregions-hover",
-          "type": "fill",
-          "source": "ecoregions",
-          "layout": {},
-          "paint": {
-            "fill-color": "#000",
-            "fill-opacity": .15
-          },
-          "filter": ["==", "US_L4NAME", ""]
-        });
+				// Add layer data to the map from config
+				if (layerData.length) {
+					layerData.forEach(function (layer) {
+						map.addLayer(layer);
+					});
+				}
+			});
 
-        map.addLayer({
-          'id': 'parks',
-          'type': 'fill',
-          'source': {
-            'type': 'geojson',
-            'data': 'assets/geodata/parks.geojson'
-          },
-          'layout': {
-            'visibility': 'none'
-          },
-          "paint": {
-            'fill-color': '#74CE81',
-            "fill-opacity": .35
-          }
-        });
-      });
+			// Expose the map object once it's ready
+			map.on('load', function () {
+				window.EventAggregator.emit('mapLoaded', map);
 
-      // Expose the map object once it's ready
-      map.on('load', function () {
-        window.EventAggregator.emit('mapLoaded', map);
+				map.on("mousemove", "ecoregions", function (e) {
+					map.setFilter("ecoregions-hover", ["==", "US_L4NAME", e.features[0].properties['US_L4NAME']]);
+				});
 
-        map.on("mousemove", "ecoregions", function (e) {
-          map.setFilter("ecoregions-hover", ["==", "US_L4NAME", e.features[0].properties['US_L4NAME']]);
-        });
+				map.on("mouseleave", "ecoregions", function (e) {
+					map.setFilter("ecoregions-hover", ["==", "US_L4NAME", '']);
+				});
+			});
+		}
+	}
 
-        map.on("mouseleave", "ecoregions", function (e) {
-          map.setFilter("ecoregions-hover", ["==", "US_L4NAME", '']);
-        });
-      });
-    }
-  }
-
-  return {
-    load: load
-  };
+	return {
+		load: load
+	};
 }();
 
 new mapboxMap.load();
 
-},{}],3:[function(require,module,exports){
+},{"./geojson-sources":2,"./layer-data":3}],5:[function(require,module,exports){
 'use strict';
 
 var $ = require('jquery');
@@ -168,7 +185,7 @@ $('.dataset.parent').click(function () {
 	}
 });
 
-},{"jquery":19}],4:[function(require,module,exports){
+},{"jquery":21}],6:[function(require,module,exports){
 'use strict';
 
 var assign        = require('es5-ext/object/assign')
@@ -233,14 +250,14 @@ d.gs = function (dscr, get, set/*, options*/) {
 	return !options ? desc : assign(normalizeOpts(options), desc);
 };
 
-},{"es5-ext/object/assign":5,"es5-ext/object/is-callable":8,"es5-ext/object/normalize-options":12,"es5-ext/string/#/contains":15}],5:[function(require,module,exports){
+},{"es5-ext/object/assign":7,"es5-ext/object/is-callable":10,"es5-ext/object/normalize-options":14,"es5-ext/string/#/contains":17}],7:[function(require,module,exports){
 'use strict';
 
 module.exports = require('./is-implemented')()
 	? Object.assign
 	: require('./shim');
 
-},{"./is-implemented":6,"./shim":7}],6:[function(require,module,exports){
+},{"./is-implemented":8,"./shim":9}],8:[function(require,module,exports){
 'use strict';
 
 module.exports = function () {
@@ -251,7 +268,7 @@ module.exports = function () {
 	return (obj.foo + obj.bar + obj.trzy) === 'razdwatrzy';
 };
 
-},{}],7:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 'use strict';
 
 var keys  = require('../keys')
@@ -275,21 +292,21 @@ module.exports = function (dest, src/*, …srcn*/) {
 	return dest;
 };
 
-},{"../keys":9,"../valid-value":14}],8:[function(require,module,exports){
+},{"../keys":11,"../valid-value":16}],10:[function(require,module,exports){
 // Deprecated
 
 'use strict';
 
 module.exports = function (obj) { return typeof obj === 'function'; };
 
-},{}],9:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 'use strict';
 
 module.exports = require('./is-implemented')()
 	? Object.keys
 	: require('./shim');
 
-},{"./is-implemented":10,"./shim":11}],10:[function(require,module,exports){
+},{"./is-implemented":12,"./shim":13}],12:[function(require,module,exports){
 'use strict';
 
 module.exports = function () {
@@ -299,7 +316,7 @@ module.exports = function () {
 	} catch (e) { return false; }
 };
 
-},{}],11:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 'use strict';
 
 var keys = Object.keys;
@@ -308,7 +325,7 @@ module.exports = function (object) {
 	return keys(object == null ? object : Object(object));
 };
 
-},{}],12:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 'use strict';
 
 var forEach = Array.prototype.forEach, create = Object.create;
@@ -327,7 +344,7 @@ module.exports = function (options/*, …options*/) {
 	return result;
 };
 
-},{}],13:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 'use strict';
 
 module.exports = function (fn) {
@@ -335,7 +352,7 @@ module.exports = function (fn) {
 	return fn;
 };
 
-},{}],14:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 'use strict';
 
 module.exports = function (value) {
@@ -343,14 +360,14 @@ module.exports = function (value) {
 	return value;
 };
 
-},{}],15:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 'use strict';
 
 module.exports = require('./is-implemented')()
 	? String.prototype.contains
 	: require('./shim');
 
-},{"./is-implemented":16,"./shim":17}],16:[function(require,module,exports){
+},{"./is-implemented":18,"./shim":19}],18:[function(require,module,exports){
 'use strict';
 
 var str = 'razdwatrzy';
@@ -360,7 +377,7 @@ module.exports = function () {
 	return ((str.contains('dwa') === true) && (str.contains('foo') === false));
 };
 
-},{}],17:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 'use strict';
 
 var indexOf = String.prototype.indexOf;
@@ -369,7 +386,7 @@ module.exports = function (searchString/*, position*/) {
 	return indexOf.call(this, searchString, arguments[1]) > -1;
 };
 
-},{}],18:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 'use strict';
 
 var d        = require('d')
@@ -503,7 +520,7 @@ module.exports = exports = function (o) {
 };
 exports.methods = methods;
 
-},{"d":4,"es5-ext/object/valid-callable":13}],19:[function(require,module,exports){
+},{"d":6,"es5-ext/object/valid-callable":15}],21:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v3.2.1
  * https://jquery.com/
