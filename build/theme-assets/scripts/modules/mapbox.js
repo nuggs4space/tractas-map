@@ -16,23 +16,6 @@ var mapboxMap = (function() {
 				center: [-119.889663696289, 38.9693489074707], // starting position
 				zoom: 4 // starting zoom
 			});
-
-      map.on('load', function(){
-        map.addLayer({
-          'id': 'counties',
-          'type': 'line',
-          'source': {
-            'type': 'geojson',
-            'data': 'assets/geodata/counties.geojson'
-          },
-          'layout': {
-            'visibility': 'none'
-          },
-          'paint': {
-            'line-color': '#754667',
-            'line-opacity': .35
-          }
-        });
         map.addLayer({
           'id': 'ecoregions',
           'type': 'fill',
