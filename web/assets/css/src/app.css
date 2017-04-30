@@ -1,3 +1,4 @@
+@charset "UTF-8";
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
   margin: 0;
   padding: 0;
@@ -43,37 +44,69 @@ table {
   position: absolute;
   top: 0;
   width: 27rem; }
+  .sidebar a {
+    display: block;
+    text-decoration: none; }
   .sidebar header {
-    height: 5rem; }
+    height: 5rem;
+    padding-top: 1.8rem;
+    text-align: center; }
   .sidebar .datasets .dataset {
     border-bottom: 0.1rem solid #EBEBEB; }
     .sidebar .datasets .dataset.chosen .heading {
       background-color: #fcfcfa; }
-      .sidebar .datasets .dataset.chosen .heading h4 a:after {
-        background-color: #1AA3DF; }
+    .sidebar .datasets .dataset:not(.parent) .heading h4 a:after {
+      border: 0.1rem solid #b2b2b2;
+      border-radius: 50%;
+      content: '';
+      display: block;
+      height: 1.25rem;
+      position: absolute;
+      right: 2.5rem;
+      top: 1.375rem;
+      width: 1.25rem; }
+    .sidebar .datasets .dataset:not(.parent).chosen .heading h4 a:after {
+      background-color: #1AA3DF;
+      border-color: #1AA3DF; }
+    .sidebar .datasets .dataset.parent.chosen .heading h4 a:after {
+      right: 3.15rem;
+      transform: rotate(-90deg); }
+    .sidebar .datasets .dataset.parent .heading h4 a:after {
+      color: #b2b2b2;
+      content: '‹';
+      display: block;
+      font-size: 3rem;
+      position: absolute;
+      right: 2.5rem;
+      top: 0.6rem;
+      transform: rotate(90deg); }
+    .sidebar .datasets .dataset .content {
+      display: none;
+      padding: 0 2.8rem 2rem 2.8rem; }
+      .sidebar .datasets .dataset .content ul {
+        column-count: 2;
+        column-gap: 2rem;
+        font-size: 15px; }
+        .sidebar .datasets .dataset .content ul li {
+          padding: 0.7rem 0; }
+          .sidebar .datasets .dataset .content ul li.chosen a {
+            font-weight: 600; }
+          .sidebar .datasets .dataset .content ul li a {
+            font-weight: 300; }
+            .sidebar .datasets .dataset .content ul li a:active, .sidebar .datasets .dataset .content ul li a:link, .sidebar .datasets .dataset .content ul li a:visited {
+              color: #00a2e2; }
     .sidebar .datasets .dataset .heading h4 {
       font-size: 1.5rem;
       font-weight: 300; }
       .sidebar .datasets .dataset .heading h4 a {
-        display: block;
         padding: 1.25rem 0 1.25rem 2.8rem;
-        position: relative;
-        text-decoration: none; }
+        position: relative; }
         .sidebar .datasets .dataset .heading h4 a:active, .sidebar .datasets .dataset .heading h4 a:link, .sidebar .datasets .dataset .heading h4 a:visited {
           color: #404040; }
-        .sidebar .datasets .dataset .heading h4 a:after {
-          border: 0.1rem solid #b2b2b2;
-          border-radius: 50%;
-          content: '';
-          display: block;
-          height: 1.25rem;
-          position: absolute;
-          right: 2.5rem;
-          top: 1.375rem;
-          width: 1.25rem; }
   .sidebar .instructions {
     background-color: #f5f5f5;
     box-shadow: inset 0px 3px 7px 0px #DFDFDF; }
     .sidebar .instructions p {
+      color: #404040;
       font-size: 1.4rem;
       padding: 1.4rem; }
