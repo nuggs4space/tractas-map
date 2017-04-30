@@ -21,6 +21,35 @@ module.exports = sources;
 'use strict';
 
 var layerData = [
+
+// Amphibians data
+{
+	'id': 'amphibians',
+	'type': 'symbol',
+	'source': {
+		'type': 'geojson',
+		'data': 'assets/geodata/amphibians.geojson'
+	},
+	'layout': {
+		'text-field': 'A',
+		'visibility': 'none'
+	}
+},
+
+// Birds data
+{
+	'id': 'birds',
+	'type': 'symbol',
+	'source': {
+		'type': 'geojson',
+		'data': 'assets/geodata/birds.geojson'
+	},
+	'layout': {
+		'text-field': 'B',
+		'visibility': 'none'
+	}
+},
+
 // Ecoregions
 {
 	'id': 'ecoregions',
@@ -55,6 +84,34 @@ var layerData = [
 		"fill-opacity": .15
 	},
 	"filter": ["==", "US_L4NAME", ""]
+},
+
+// Fish data
+{
+	'id': 'fish',
+	'type': 'symbol',
+	'source': {
+		'type': 'geojson',
+		'data': 'assets/geodata/fish.geojson'
+	},
+	'layout': {
+		'text-field': 'F',
+		'visibility': 'none'
+	}
+},
+
+// Mammals data
+{
+	'id': 'mammals',
+	'type': 'symbol',
+	'source': {
+		'type': 'geojson',
+		'data': 'assets/geodata/mammals.geojson'
+	},
+	'layout': {
+		'text-field': 'M',
+		'visibility': 'none'
+	}
 },
 
 // Parks data
@@ -118,6 +175,20 @@ var layerData = [
 		'visibility': 'none'
 	},
 	"filter": ["==", "ward", ""]
+},
+
+// Reptile data
+{
+	'id': 'reptiles',
+	'type': 'symbol',
+	'source': {
+		'type': 'geojson',
+		'data': 'assets/geodata/reptiles.geojson'
+	},
+	'layout': {
+		'text-field': 'R',
+		'visibility': 'none'
+	}
 },
 
 // Watershed layer
