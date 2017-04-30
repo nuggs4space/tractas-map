@@ -86,7 +86,7 @@ table {
       .sidebar .datasets .dataset .content ul {
         column-count: 2;
         column-gap: 2rem;
-        font-size: 15px; }
+        font-size: 14px; }
         .sidebar .datasets .dataset .content ul li {
           padding: 0.7rem 0; }
           .sidebar .datasets .dataset .content ul li.chosen a {
