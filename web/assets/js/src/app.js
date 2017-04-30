@@ -351,6 +351,12 @@ var mapboxMap = function () {
 					$('.js-key').find("[data-active-key='ecoregion']").remove();
 					$('.js-key').find("[data-active-key='wards']").remove();
 					$('.js-key').find("[data-active-key='water']").remove();
+					$('.js-key').find("[data-active-key='mammal']").remove();
+				});
+
+				map.on("click", "mammals", function (e) {
+					$('.js-key').find("[data-active-key='mammal']").remove();
+					$('.js-key').append('<li data-active-key="mammal">Species:<br>' + e.features[0].properties['species'] + '</li>');
 				});
 
 				// CLick events
