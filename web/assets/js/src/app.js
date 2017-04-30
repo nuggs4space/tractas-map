@@ -45,11 +45,19 @@ new mapboxMap.load();
 var $ = require('jquery');
 
 $('.dataset .heading').click(function () {
-  $(this).parent('.dataset').toggleClass('chosen');
+	$(this).parent('.dataset').toggleClass('chosen');
 });
 
 $('.dataset .content li').click(function () {
-  $(this).toggleClass('chosen');
+	$(this).toggleClass('chosen');
+});
+
+$('.dataset.parent').click(function () {
+	if ($(this).hasClass('chosen')) {
+		$(this).find('.content').slideDown('slow');
+	} else {
+		$(this).find('.content').slideUp('slow');
+	}
 });
 
 },{"jquery":4}],4:[function(require,module,exports){

@@ -66,9 +66,8 @@ table {
       top: 1.375rem;
       width: 1.25rem; }
     .sidebar .datasets .dataset:not(.parent).chosen .heading h4 a:after {
-      background-color: #1AA3DF; }
-    .sidebar .datasets .dataset.parent.chosen .content {
-      display: block; }
+      background-color: #1AA3DF;
+      border-color: #1AA3DF; }
     .sidebar .datasets .dataset.parent.chosen .heading h4 a:after {
       right: 3.15rem;
       transform: rotate(-90deg); }
