@@ -70,6 +70,44 @@ var layerData = [
 		'fill-color': '#74CE81',
 		"fill-opacity": .35
 	}
+},
+
+// Parks hover data
+{
+	'id': 'parks-hover',
+	'type': 'fill',
+	'source': 'parks',
+	'layout': {},
+	"paint": {
+		'fill-color': '#000',
+		"fill-opacity": .15
+	},
+	"filter": ["==", "NAME", ""]
+},
+
+// Reno wards Layer
+{
+	'id': 'reno-wards',
+	'type': 'fill',
+	'source': {
+		'type': 'geojson',
+		'data': 'assets/geodata/reno-wards.geojson'
+	},
+	"paint": {
+		"fill-color": "rgba(255, 255, 0, .35)",
+		"fill-outline-color": "#000"
+	}
+},
+
+// Reno wards hover layer
+{
+	'id': 'reno-wards-hover',
+	'type': 'fill',
+	'source': 'reno-wards',
+	"paint": {
+		"fill-color": "rgba(0, 0, 0, .15)"
+	},
+	"filter": ["==", "ward", ""]
 }];
 
 module.exports = layerData;
@@ -120,12 +158,42 @@ var mapboxMap = function () {
 			map.on('load', function () {
 				window.EventAggregator.emit('mapLoaded', map);
 
+				// Hover events
 				map.on("mousemove", "ecoregions", function (e) {
 					map.setFilter("ecoregions-hover", ["==", "US_L4NAME", e.features[0].properties['US_L4NAME']]);
 				});
 
 				map.on("mouseleave", "ecoregions", function (e) {
 					map.setFilter("ecoregions-hover", ["==", "US_L4NAME", '']);
+				});
+
+				map.on("mousemove", "parks", function (e) {
+					map.setFilter("parks-hover", ["==", "NAME", e.features[0].properties['NAME']]);
+				});
+
+				map.on("mouseleave", "parks", function (e) {
+					map.setFilter("parks-hover", ["==", "NAME", '']);
+				});
+
+				map.on("mousemove", "reno-wards", function (e) {
+					map.setFilter("reno-wards-hover", ["==", "ward", e.features[0].properties['ward']]);
+				});
+
+				map.on("mouseleave", "reno-wards", function (e) {
+					map.setFilter("reno-wards-hover", ["==", "ward", '']);
+				});
+
+				// CLick events
+				map.on("click", "parks", function (e) {
+					console.log(e);
+				});
+
+				map.on("click", "ecoregions", function (e) {
+					console.log(e);
+				});
+
+				map.on("click", "reno-wards", function (e) {
+					console.log(e);
 				});
 			});
 		}

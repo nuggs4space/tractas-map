@@ -64,8 +64,59 @@ var layerData = [
 	},
 
 	// Parks hover data
+	{
+		'id': 'parks-hover',
+		'type': 'fill',
+		'source': 'parks',
+		'layout': {},
+		"paint": {
+			'fill-color': '#000',
+			"fill-opacity": .15
+		},
+		"filter": ["==", "NAME", ""]
+	},
 
+	// Reno wards Layer
+	{
+		'id': 'reno-wards',
+		'type': 'fill',
+		'source': {
+			'type': 'geojson',
+			'data': 'assets/geodata/reno-wards.geojson'
+		},
+		"paint": {
+			"fill-color": "rgba(255, 255, 0, .35)",
+			"fill-outline-color": "#000"
+		},
+	},
 
+	// Reno wards hover layer
+	{
+		'id': 'reno-wards-hover',
+		'type': 'fill',
+		'source': 'reno-wards',
+		"paint": {
+			"fill-color": "rgba(0, 0, 0, .15)",
+		},
+		"filter": ["==", "ward", ""],
+	},
+
+	// Image data
+	// {
+	// 	"id": "elevation",
+	// 	"type": "raster",
+	// 	"source": {
+	// 		'type': 'image',
+	// 		'url': 'assets/geodata/radar.gif',
+	// 		"coordinates": [
+	// 			 [-80.425, 46.437],
+	// 			 [-71.516, 46.437],
+	// 			 [-71.516, 37.936],
+	// 			 [-80.425, 37.936]
+	// 		]
+	// 	},
+	// 	"paint": {"raster-opacity": 0.85}
+	// },
 ];
 
 module.exports = layerData;
